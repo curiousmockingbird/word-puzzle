@@ -2,6 +2,12 @@ import mainSiteReducer from "../../reducers/main-site-reducer";
 
 describe('mainSiteReducer', () => {
   let action;
+  const currentState = {
+    1: {
+      word: 'random',
+      id: 1
+    }
+  }
   const wordToGuess = {
     word: 'random',
     id: 1
@@ -23,6 +29,14 @@ describe('mainSiteReducer', () => {
         word: word,
         id: id
       }
-    })
-  })
-})
+    });
+  });  
+  
+  test('Should successfully delete the word once the game finishes', () => {
+    action = {
+      type: 'DELETE_WORD',
+      id: 1
+    };
+    expect(mainSiteReducer(currentState, action)).toEqual({});
+  });
+});

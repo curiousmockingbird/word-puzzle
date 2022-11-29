@@ -1,11 +1,11 @@
 import React from "react";
-import CreateWordToGuessForm from "./CreateWordToGuessForm";
-import InputLetterOrWordToGuessForm from "./InputLetterOrWordToGuessForm";
+import WordToGuess from "./WordToGuess"
 
 function MainSite(){
   return (
     <React.Fragment>
-      
+      <hr />
+      <WordToGuess />
     </React.Fragment>
   )
 }

@@ -7,9 +7,14 @@ const reducer = (state = {}, action) => {
           word: word,
           id: id
         }
-      })
-default:
-    return state;
+      });
+    case 'DELETE_WORD':
+      //Something       
+      const newState = {...state};
+      delete newState[id];
+      return newState;
+    default:
+      return state;
   }
 };
 
