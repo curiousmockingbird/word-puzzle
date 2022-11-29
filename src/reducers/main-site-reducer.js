@@ -14,8 +14,8 @@ const reducer = (state = {}, action) => {
       delete newState[id];
       return newState;
     case 'COUNT_LETTERS':
-
-      //return 6;
+      const letterState = {...state};
+      return letterState.word;
     default:
       return state;
   }

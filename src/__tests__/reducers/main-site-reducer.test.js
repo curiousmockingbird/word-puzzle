@@ -47,6 +47,6 @@ describe('mainSiteReducer', () => {
     action = {
       type: 'COUNT_LETTERS'
     };
-    expect(mainSiteReducer(wordToGuess.word, action)).toEqual(6);
-  })
+    expect(mainSiteReducer(wordToGuess.word.length, action)).toEqual(6);
+  });
 });
