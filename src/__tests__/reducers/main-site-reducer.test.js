@@ -2,16 +2,19 @@ import mainSiteReducer from "../../reducers/main-site-reducer";
 
 describe('mainSiteReducer', () => {
   let action;
+
   const currentState = {
     1: {
       word: 'random',
       id: 1
     }
-  }
+  };
+
   const wordToGuess = {
     word: 'random',
     id: 1
-  }  
+  };
+
   test('Should return default state if there is no action type passed into reducer', () => {
     expect(mainSiteReducer({}, { type: null})).toEqual({});
   });
@@ -39,4 +42,11 @@ describe('mainSiteReducer', () => {
     };
     expect(mainSiteReducer(currentState, action)).toEqual({});
   });
+
+  test('Should return the number of characters the created word has', () => {
+    action = {
+      type: 'COUNT_LETTERS'
+    };
+    expect(mainSiteReducer(wordToGuess.word, action)).toEqual(6);
+  })
 });
