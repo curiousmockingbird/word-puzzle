@@ -12,11 +12,27 @@ class WordPuzzleControl extends React.Component {
     }
   }
 
-  handleClick(){
-    
+  handleClick = () => {
+    const { dispatch } = this.props;
+    const action = {
+      type: 'TOGGLE_FORM'
+    }
+    dispatch(action);
   }
 
-  handleAddingNewWordToList(){
+  handleAddingNewWordToList = (newWord) => {
+    console.log(newWord);
+    const { dispatch } = this.props;
+    const { id, word } = newWord;
+    const action = { 
+      type: 'ADD_WORD',
+      id: id,
+      word: word,
+    };
+    dispatch(action);
+  }
+
+  handleProceedingToPlay = () => {
 
   }
 
@@ -24,18 +40,32 @@ class WordPuzzleControl extends React.Component {
     let currentlyVisibleState = null;
     let buttonText = null;
     if (this.props.formVisibleOnPage) {
-      currentlyVisibleState = <AddWordsToGuessForm onNewWordCreation={this.handleAddingNewWordToList} />
-      buttonText= 'Guess word'
+      currentlyVisibleState = <AddWordsToGuessForm 
+      onNewWordCreation={this.handleAddingNewWordToList} 
+      onProceedingToPlay={this.handleProceedingToPlay}/>
+      buttonText='Back'
     } else {
       buttonText = 'Add words for your opponent to guess'
     }
+
+    const buttonStyle = {
+    marginTop: '10px',
+    }
+
     return(
       <React.Fragment>
         {currentlyVisibleState}
-        <button onCLick={this.handleClick}>{buttonText}</button>
+        <div style={buttonStyle}>
+        <button onClick={this.handleClick}>{buttonText}</button>
+        </div>
       </React.Fragment>
     );
   }
+}
+
+WordPuzzleControl.propTypes = {
+  mainWordList: PropTypes.object,
+  formVisibleOnPage: PropTypes.bool
 }
 
 const mapStateToProps = state => {
@@ -46,10 +76,5 @@ const mapStateToProps = state => {
 }
 
 WordPuzzleControl = connect(mapStateToProps)(WordPuzzleControl);
-
-WordPuzzleControl.propTypes = {
-  mainWordList: PropTypes.object,
-  formVisibleOnPage: PropTypes.bool
-}
 
 export default WordPuzzleControl;
