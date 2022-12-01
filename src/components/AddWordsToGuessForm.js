@@ -13,28 +13,25 @@ function AddWordsToGuessForm(props){
   }
 
   //Move this function (and it's associated form-button on Lines 31-33) to a separate component file tomorrow.  -SM, 11/30/22, 3:40pm PST. 
-  function handleProceedingToPlaySubmission(){
-
-  }
+  // function handleProceedingToPlaySubmission(){
+  // }
   
   return(
     <React.Fragment>
       <h5>Enter a word for the other player to guess:</h5>
+      <h5>Words added: {props.numberOfWordsAdded} </h5>
       <form onSubmit={handleNewWordSubmission}>
         <input
         type='text'
         name='word'
         placeholder='Enter a word' /><br></br>
-        <button type='submit'>Add words</button>
-      </form>
-
-      <form onSubmit={handleProceedingToPlaySubmission}>
-        <button type='submit'>Guess words</button>
+        <button type='submit'>Add a word</button>
       </form>
     </React.Fragment>
   );
 }
 AddWordsToGuessForm.propTypes = {
-  onNewWordCreation: PropTypes.func
+  onNewWordCreation: PropTypes.func,
+  numberOfWordsAdded: PropTypes.number
 }
  export default AddWordsToGuessForm;
